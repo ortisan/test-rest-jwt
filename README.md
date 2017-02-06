@@ -1,15 +1,16 @@
-# Project
+# test-rest-jwt
+
+Projeto para testes JaxRs e Jwt
 
 ###Criar usuário:
 
 Post para http://localhost:8080/teste-jpa-1.0/api/user
 
-```json
-{
-  "name":"Marcelo Ortiz de Santana",
-  "username":"marcelo",
-  "password": "123456"
-}
+```sh
+curl --request POST \
+  --url http://localhost:8080/teste-jpa-1.0/api/user \
+  --header 'content-type: application/json' \
+  --data '{"name":"Marcelo Ortiz de Santana",\n"username":"marcelo",\n"password": "123456"}'
 
 ```
 
@@ -17,24 +18,27 @@ Post para http://localhost:8080/teste-jpa-1.0/api/user
 
 Post para http://localhost:8080/teste-jpa-1.0/api/login
 
-```json
-{
-  "username":"marcelo",
-  "password": "123456"
-}
-
+```sh
+curl --request POST \
+  --url http://localhost:8080/teste-jpa-1.0/api/login \
+  --header 'content-type: application/json' \
+  --data '{"username":"marcelo","password": "123456"}'  
+  
 ```
 
-Copiar o autorization
-
-## Listar os usuários para teste de token
+### Teste de token
 
 Copiar o Header Authorization do rest anterior e enviar no header Autorization do request:
 
-http://localhost:8080/teste-jpa-1.0/api/user
+Get para http://localhost:8080/teste-jpa-1.0/api/user
 
+```sh
+curl --request GET \
+  --url http://localhost:8080/teste-jpa-1.0/api/user \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInVzZXJuYW1lIjoibWFyY2VsbyJ9.XAVosyc3voE1KK5Tzs0rgogY0bEVFaj17EUEDcJqGgU'
+```
 
-### Migrate DB
+## Migrar BD
 
 ```
 mvn flyway:migrate
